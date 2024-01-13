@@ -50,7 +50,18 @@ function App() {
     };
   }, [isPlaying, currentStep])
 
+  const instanceArrayRef = useRef(Array.from({ length: Object.keys(soundPack).length }, () => Array.from({ length: bar * pulse }).fill(false)))
+  const setInstance = (trackRowIndex, pulseIndex, isChecked) => {
+    if (isChecked) {
+      instanceArrayRef.current[trackRowIndex][pulseIndex] = new Audio(soundPack[trackRowIndex])
+    } else {
+      instanceArrayRef.current[trackRowIndex][pulseIndex].remove()
+      instanceArrayRef.current[trackRowIndex][pulseIndex] = null
+    }
+  }
+
   useEffect(() => {
+    /*
     track.map((trackRow, index) => {
       if (trackRow[currentStep - 1]) {
         const newClip = new Audio(soundPack[index])
@@ -58,6 +69,12 @@ function App() {
         newClip.addEventListener('ended', () => {
           newClip.remove()
         });
+      }
+    })
+    */
+   instanceArrayRef.current.map((trackRow) => {
+      if (trackRow[currentStep - 1]) {
+        trackRow[currentStep - 1].play()
       }
     })
   }, [currentStep])
@@ -68,7 +85,7 @@ function App() {
 
   return (
     <>
-      <Tracker bar={bar} pulse={pulse} track={track} setTrack={setTrack} currentStep={currentStep} pulseSpan={pulseSpan} />
+      <Tracker bar={bar} pulse={pulse} track={track} setTrack={setTrack} setInstance={setInstance} currentStep={currentStep} pulseSpan={pulseSpan} />
       <div>{currentStep}</div>
       {
         isPlaying
