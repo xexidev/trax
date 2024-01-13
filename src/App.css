@@ -1,0 +1,71 @@
+#root {
+  --bgColor: #242424;
+  --bgPulseColor1: radial-gradient(circle, rgba(255,95,240,1) 0%, rgba(245,77,177,1) 22%, rgba(156,37,122,1) 77%, rgba(96,38,79,1) 100%);
+  --bgPulseColor2: radial-gradient(circle, rgba(255,237,115,1) 0%, rgba(243,214,74,1) 22%, rgba(185,159,52,1) 77%, rgba(172,150,67,1) 100%);
+  --bgPulseColor3: radial-gradient(circle, rgba(67,255,173,1) 0%, rgba(40,215,124,1) 22%, rgba(38,172,98,1) 77%, rgba(38,136,83,1) 100%);
+  --bgPulseColor4: radial-gradient(circle, rgba(255,186,126,1) 0%, rgba(255,149,88,1) 22%, rgba(203,111,63,1) 77%, rgba(155,89,61,1) 100%);
+  --bgPulseColor5: radial-gradient(circle, rgba(125,181,255,1) 0%, rgba(90,165,255,1) 22%, rgba(46,111,182,1) 77%, rgba(69,110,154,1) 100%);
+  --bgPulseColor6: radial-gradient(circle, rgba(255,145,125,1) 0%, rgba(254,87,85,1) 22%, rgba(173,58,60,1) 77%, rgba(164,57,63,1) 100%);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.tracker {
+  display: flex;
+  flex-direction: column;
+}
+.track {
+  display: flex;
+  flex-direction: row;
+}
+.beat {
+  aspect-ratio: 1;
+  border-radius: 8%;
+  margin: 0;
+  display: flex;
+  flex-basis: 100%;
+  appearance: none;
+  border-left: 1px solid #242424;
+  border-right: 1px solid #242424;
+  border-top: 2px solid #00000050;
+  border-bottom: 2px solid #ffffff30;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 100%);
+  position: relative;
+}
+.beat::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: 0px;
+  width: 100%;
+  height: calc(100% + 4px);
+  background-color: #ffffff50;
+  opacity: 0;
+  transition: all linear 100ms;
+}
+.beat.playing {
+  background: #666;
+  transition-duration: 100ms;
+}
+.track .beat.playing:checked::after {
+  opacity: 1;
+  transition: all linear 100ms;
+}
+.beat:nth-child(4n + 1) {
+  background-color: #000000ff;
+}
+.track:nth-child(1) .beat:checked {
+  background: var(--bgPulseColor1);
+}
+.track:nth-child(2) .beat:checked {
+  background: var(--bgPulseColor2); 
+}
+.track:nth-child(3) .beat:checked {
+  background: var(--bgPulseColor3);
+}
+.track:nth-child(4) .beat:checked {
+  background: var(--bgPulseColor4);
+}
