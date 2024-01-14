@@ -61,17 +61,6 @@ function App() {
   }
 
   useEffect(() => {
-    /*
-    track.map((trackRow, index) => {
-      if (trackRow[currentStep - 1]) {
-        const newClip = new Audio(soundPack[index])
-        newClip.play()
-        newClip.addEventListener('ended', () => {
-          newClip.remove()
-        });
-      }
-    })
-    */
    instanceArrayRef.current.map((trackRow) => {
       if (trackRow[currentStep - 1]) {
         trackRow[currentStep - 1].play()

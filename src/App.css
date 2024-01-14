@@ -57,15 +57,21 @@
 .beat:nth-child(4n + 1) {
   background-color: #000000ff;
 }
-.track:nth-child(1) .beat:checked {
+.track:nth-child(6n + 1) .beat:checked {
   background: var(--bgPulseColor1);
 }
-.track:nth-child(2) .beat:checked {
+.track:nth-child(6n + 2) .beat:checked {
   background: var(--bgPulseColor2); 
 }
-.track:nth-child(3) .beat:checked {
+.track:nth-child(6n + 3) .beat:checked {
   background: var(--bgPulseColor3);
 }
-.track:nth-child(4) .beat:checked {
+.track:nth-child(6n + 4) .beat:checked {
   background: var(--bgPulseColor4);
+}
+.track:nth-child(6n + 5) .beat:checked {
+  background: var(--bgPulseColor5);
+}
+.track:nth-child(6n + 6) .beat:checked {
+  background: var(--bgPulseColor6);
 }
