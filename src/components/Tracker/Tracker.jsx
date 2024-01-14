@@ -6,12 +6,14 @@ export default function Tracker() {
   const { track } = useContext(TrackerContext)
   
   return (
-    <div className='tracker'>
-      {
-        track.map((_, index) => (
-          <Track key={index} trackRowIndex={index}/>
-        ))
-      }
+    <div className='trackerContainer'>
+      <div className='tracker'>
+        {
+          track.map((_, index) => (
+            <Track key={index} trackRowIndex={index}/>
+          ))
+        }
+      </div>
     </div>
   )
 }

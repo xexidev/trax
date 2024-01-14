@@ -6,12 +6,12 @@ import Controls from './components/Controls/Controls'
 function App() {
 
   return (
-    <>
-    <TrackerProvider>
-      <Tracker/>
-      <Controls />
-    </TrackerProvider>
-    </>
+    <div className='app'>
+      <TrackerProvider>
+        <Tracker/>
+        <Controls />
+      </TrackerProvider>
+    </div>
   )
 }
 

@@ -9,6 +9,7 @@ export function TrackerProvider ({ children }) {
     const [bpm, setBpm] = useState(120)
     const [bar, setBar] = useState(4)
     const [pulse, setPulse] = useState(4)
+
     const trackLength = useMemo(() =>
         bar * pulse
     , [bar, pulse])
@@ -22,7 +23,15 @@ export function TrackerProvider ({ children }) {
     const pulseSpan = useMemo(() =>
       60000 / (bpm * pulse)
     , [bpm, pulse])
- 
+
+    useEffect(() => {
+      if(bpm > 999) {
+          setBpm(999)
+      } else if (bpm < 1) {
+          setBpm(1)
+      }
+    }, [bpm])
+
     useEffect(() => {
       let playTimeoutId
   
