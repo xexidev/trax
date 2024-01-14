@@ -1,5 +1,5 @@
 import './App.css'
-import { useEffect, useState, useMemo, useRef } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import Tracker from './components/Tracker/Tracker'
 import kick from './assets/sounds/kick.mp3'
 import snare from './assets/sounds/snare.mp3'
@@ -50,26 +50,35 @@ function App() {
     };
   }, [isPlaying, currentStep])
 
-  const instanceArrayRef = useRef(Array.from({ length: Object.keys(soundPack).length }, () => Array.from({ length: bar * pulse }).fill(false)))
   const setInstance = (trackRowIndex, pulseIndex, isChecked) => {
+    const newTrack = [...track]
     if (isChecked) {
-      instanceArrayRef.current[trackRowIndex][pulseIndex] = new Audio(soundPack[trackRowIndex])
+      newTrack[trackRowIndex][pulseIndex] = new Audio(soundPack[trackRowIndex])
     } else {
-      instanceArrayRef.current[trackRowIndex][pulseIndex].remove()
-      instanceArrayRef.current[trackRowIndex][pulseIndex] = null
+      newTrack[trackRowIndex][pulseIndex].remove()
+      newTrack[trackRowIndex][pulseIndex] = false
     }
+    setTrack(newTrack)
   }
 
   useEffect(() => {
-   instanceArrayRef.current.map((trackRow) => {
-      if (trackRow[currentStep - 1]) {
+    track.map((trackRow) => {
+      if (trackRow[currentStep - 1] && trackRow[currentStep - 1] instanceof Audio) {
         trackRow[currentStep - 1].play()
       }
     })
   }, [currentStep])
 
   const clear = () => {
-    setTrack(Array.from({ length: Object.keys(soundPack).length }, () => Array.from({ length: bar * pulse }).fill(false)))
+    const newTrack = track.map((trackRow) => {
+      return trackRow.map((trackCol) => {
+        if (trackCol instanceof Audio) {
+          trackCol.remove()
+        }
+        return false
+      })
+    })
+    setTrack(newTrack)
   }
 
   return (

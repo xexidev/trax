@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react"
 
-export default function Pulse({track, setTrack, setInstance, trackRowIndex, pulseIndex, currentStep}) {
+export default function Pulse({track, setInstance, trackRowIndex, pulseIndex, currentStep}) {
   const [isChecked, setIsChecked] = useState(track[trackRowIndex][pulseIndex])
   const isPlaying = currentStep === pulseIndex + 1
 
   const togglePulse = (e) => {
     setIsChecked(!isChecked)
-    const newTrack = [...track]
-    newTrack[trackRowIndex][pulseIndex] = e.target.checked
-    setTrack(newTrack)
     setInstance(trackRowIndex, pulseIndex, e.target.checked)
   }
 

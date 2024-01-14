@@ -1,12 +1,12 @@
 import Track from './Track/Track'
 
-export default function Tracker({track, setTrack, setInstance, currentStep, clear, pulseSpan}) {
+export default function Tracker({track, setInstance, currentStep, pulseSpan}) {
   
   return (
     <div className='tracker'>
       {
         track.map((_, index) => (
-          <Track key={index} trackRowIndex={index} track={track} setTrack={setTrack} setInstance={setInstance} currentStep={currentStep} clear={clear} pulseSpan={pulseSpan}/>
+          <Track key={index} trackRowIndex={index} track={track} setInstance={setInstance} currentStep={currentStep} pulseSpan={pulseSpan}/>
         ))
       }
     </div>
