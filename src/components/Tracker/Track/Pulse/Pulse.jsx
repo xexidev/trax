@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from 'react'
+import { TrackerContext } from '../../../context/trackerContext'
 
-export default function Pulse({track, setInstance, trackRowIndex, pulseIndex, currentStep}) {
+export default function Pulse({trackRowIndex, pulseIndex}) {
+  const { track, setInstance, currentStep } = useContext(TrackerContext)
   const [isChecked, setIsChecked] = useState(track[trackRowIndex][pulseIndex])
   const isPlaying = currentStep === pulseIndex + 1
 
@@ -10,7 +12,7 @@ export default function Pulse({track, setInstance, trackRowIndex, pulseIndex, cu
   }
 
   useEffect(() => {
-    setIsChecked(track[trackRowIndex][pulseIndex])
+      setIsChecked(track[trackRowIndex][pulseIndex])
   }, [track])
 
   return (

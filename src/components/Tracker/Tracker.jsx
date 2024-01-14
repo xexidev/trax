@@ -1,12 +1,15 @@
 import Track from './Track/Track'
+import { useContext } from 'react'
+import { TrackerContext } from '../context/trackerContext'
 
-export default function Tracker({track, setInstance, currentStep, pulseSpan}) {
+export default function Tracker() {
+  const { track } = useContext(TrackerContext)
   
   return (
     <div className='tracker'>
       {
         track.map((_, index) => (
-          <Track key={index} trackRowIndex={index} track={track} setInstance={setInstance} currentStep={currentStep} pulseSpan={pulseSpan}/>
+          <Track key={index} trackRowIndex={index}/>
         ))
       }
     </div>
