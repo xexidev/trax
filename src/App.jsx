@@ -3,8 +3,7 @@ import { TrackerProvider } from './components/context/trackerContext'
 import Tracker from './components/Tracker/Tracker'
 import Controls from './components/Controls/Controls'
 
-function App() {
-
+function App () {
   return (
     <div className='app'>
       <TrackerProvider>
