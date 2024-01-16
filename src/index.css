@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @font-face {
   font-family: 'digital';
-  src: url(./../fonts/digital.ttf);
+  src: url(./../fonts/digital7.ttf);
 }
 @font-face {
   font-family: 'bebas';
-  src: url(./../fonts/bebas.ttf);
+  src: url(./../fonts/bebasneue.ttf);
 }
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -20,64 +20,81 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --header-height: 180px;
+  --footer-height: 30px;
 }
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
 }
 #root {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  min-height: 100vh;
-  padding: 1rem;  
+  height: 100vh;
 }
 .header {
+  height: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & .logo {
+    width: 50px;
+  }
+}
+.header {
+  & h1 {
+    font-family: 'bebas';
+    font-size: 75px;
+    line-height: 1;
+    margin: 0px;
+  }
+  & h2 {
+    margin: 0px;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 300;
+  }
+}
+.app {
+  width: 100%;
+  max-width: 1280px;
+  min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
   margin-bottom: 50px;
 }
-.header .logo {
-  width: 50px;
-}
-.header h1 {
-  font-family: 'bebas';
-  font-size: 75px;
-  line-height: 1;
-  margin: 0px;
-}
-.header h2 {
-  margin: 0px;
-  font-size: 16px;
-  line-height: 1.2;
-  font-weight: 300;
-}
 .footer {
-  padding: 10px 0;
-  background-color: #333;
-  font-size: 12px;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-.footer .footerLinks {
+  height: var(--footer-height);
   display: flex;
   justify-content: center;
-  gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.footer .footerLinks li {
-  display: inline-block;
-}
-.footer .footerLinks li a {
-  text-decoration: none;
-  color: #dddddd;
-  transition: color linear 150ms;
-}
-.footer .footerLinks li a:hover {
-  text-decoration: none;
-  color: #fb8138;
-  transition: color linear 150ms;
+  background-color: #333;
+  font-size: 12px;
+  width: 100%;
+
+  & .footerLinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & li {
+      display: inline-block;
+
+      & a {
+        text-decoration: none;
+        color: #dddddd;
+        transition: color linear 150ms;
+
+        &:hover {
+          text-decoration: none;
+          color: #fb8138;
+          transition: color linear 150ms;
+        }
+      }
+    }
+  }
 }

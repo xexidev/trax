@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useMemo } from 'react'
+import { createContext, useState, useEffect, useMemo, useRef } from 'react'
 import soundPackCollection from '../../utils/soundPack'
 
 export const TrackerContext = createContext()
@@ -53,21 +53,29 @@ export function TrackerProvider ({ children }) {
     }
   }, [isPlaying, currentStep])
 
-  const setInstance = (trackRowIndex, pulseIndex, isChecked) => {
+  const audioContext = useRef(new (window.AudioContext || window.webkitAudioContext)())
+
+  const setInstance = async (trackRowIndex, pulseIndex, isChecked) => {
     const newTrack = [...track]
     if (isChecked) {
-      newTrack[trackRowIndex][pulseIndex] = new Audio(soundPack[trackRowIndex])
+      const response = await fetch(soundPack[trackRowIndex])
+      const arrayBuffer = await response.arrayBuffer()
+      const audioBuffer = await audioContext.current.decodeAudioData(arrayBuffer)
+      newTrack[trackRowIndex][pulseIndex] = audioBuffer
     } else {
-      newTrack[trackRowIndex][pulseIndex].remove()
-      newTrack[trackRowIndex][pulseIndex] = false
+      newTrack[trackRowIndex][pulseIndex] = null
     }
-    setTrack(newTrack)
   }
 
   useEffect(() => {
     for (const trackRow of track) {
-      if (trackRow[currentStep - 1] && trackRow[currentStep - 1] instanceof Audio) {
-        trackRow[currentStep - 1].play()
+      const audioBuffer = trackRow[currentStep - 1]
+
+      if (audioBuffer instanceof AudioBuffer) {
+        const source = audioContext.current.createBufferSource()
+        source.buffer = audioBuffer
+        source.connect(audioContext.current.destination)
+        source.start()
       }
     }
   }, [currentStep])
@@ -83,7 +91,6 @@ export function TrackerProvider ({ children }) {
     })
     setTrack(newTrack)
   }
-
   return (
     <TrackerContext.Provider value={{ track, setInstance, currentStep, isPlaying, setIsPlaying, clear, bpm, setBpm }}>
       {children}

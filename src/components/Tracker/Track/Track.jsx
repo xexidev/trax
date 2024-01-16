@@ -9,7 +9,7 @@ export default function Track ({ trackRowIndex }) {
     <div className='track'>
       {
         track[0].map((_, index) => (
-          <Pulse key={index} trackRowIndex={trackRowIndex} pulseIndex={index} />
+          <Pulse key={index} name={index} trackRowIndex={trackRowIndex} pulseIndex={index} />
         ))
       }
     </div>

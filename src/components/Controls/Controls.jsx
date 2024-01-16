@@ -8,12 +8,12 @@ export default function Controls () {
       <div className='controls'>
         <div className='bpmControls'>
           <div className='bpmDisplayBox'>
-            <input className='bpmDisplay' type='number' value={bpm} min={1} max={999} step={1} onInput={(e) => setBpm(parseInt(e.target.value))}></input>
-            <input className='bpmDisplayBg' type='number' value={888} readOnly></input>
+            <input name='bpmDisplay' className='bpmDisplay' type='number' value={bpm} min={1} max={999} step={1} onInput={(e) => setBpm(parseInt(e.target.value))}></input>
+            <input name='bpmDisplayBg' className='bpmDisplayBg' type='number' value={888} readOnly></input>
           </div>
           <div className='bpmAdjust'>
-            <button className='plus' onClick={() => setBpm(bpm => bpm + 1)}>⯅</button>
-            <button className='minus' onClick={() => setBpm(bpm => bpm - 1)}>⯆</button>
+            <button className='plus' onClick={() => setBpm(bpm => bpm + 1)}>▲</button>
+            <button className='minus' onClick={() => setBpm(bpm => bpm - 1)}>▼</button>
           </div>
         </div>
         <div className='playbackControls'>

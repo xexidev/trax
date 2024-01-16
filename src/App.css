@@ -7,17 +7,13 @@
   --bgPulseColor5: radial-gradient(circle, rgba(125,181,255,1) 0%, rgba(90,165,255,1) 22%, rgba(46,111,182,1) 77%, rgba(69,110,154,1) 100%);
   --bgPulseColor6: radial-gradient(circle, rgba(255,145,125,1) 0%, rgba(254,87,85,1) 22%, rgba(173,58,60,1) 77%, rgba(164,57,63,1) 100%);
 }
-.app {
-  width: 100%;
-  max-width: 1280px;
-}
 .trackerContainer {
   overflow-x: auto;
   white-space: nowrap;
-  margin-bottom: 50px;
   border: 0px solid #111;
   border-radius: 10px;
   box-shadow: 0px 0px 5px #000;
+  margin: 0 2rem 50px;
 }
 .tracker {
   display: flex;
@@ -103,10 +99,6 @@
   gap: 20px;
   height: 100px;
 }
-.bpmDisplayBox {
-  position: relative;
-  height: 100px;
-}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -115,50 +107,64 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
-.bpmDisplayBox > input {
-  width: 200px;
-  padding-right: 20px;
-  text-align: right;
-  font-family: 'digital';
-  font-size: 100px;
-  border-radius: 10px 0 0 10px;
-}
-.bpmDisplayBox > .bpmDisplay {
-  background-color: transparent;
-  border: 0px;
-  position: absolute;
-  color: #efa14c;
-}
-.bpmDisplayBox > .bpmDisplay:focus {
-  outline: 0;
-}
-.bpmDisplayBox > .bpmDisplayBg {
-  background-color: #111;
-  border: 0px;
-  color: #efa14c15;
+.bpmDisplayBox {
+  position: relative;
+  height: 100px;
+
+  & input {
+    width: 200px;
+    padding-right: 20px;
+    text-align: right;
+    font-family: 'digital';
+    font-size: 100px;
+    border-radius: 10px 0 0 10px;
+    height: 100%;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &.bpmDisplay {
+      background-color: transparent;
+      border: 0px;
+      position: absolute;
+      color: #efa14c;
+    }
+
+    &.bpmDisplayBg {
+      background-color: #111;
+      border: 0px;
+      color: #efa14c15;
+    }
+  }
 }
 .bpmAdjust {
   display: flex;
   flex-direction: column;
-}
-.bpmAdjust > button {
-  cursor: pointer;
-  display: block;
-  border: 0;
-  height: 50%;
-  width: 50px;
-  background-color: #666;
-  box-shadow: inset 0 0 8px #000;
-}
-.bpmAdjust > button:active {
-  background-color: #5a5a5a;
-  box-shadow: inset 0 0 12px #000;
-}
-.bpmAdjust > button.plus {
-  border-radius: 0px 10px 0px 0px;
-}
-.bpmAdjust > button.minus {
-  border-radius: 0px 0px 10px 0px;
+
+  & button {
+    cursor: pointer;
+    display: block;
+    border: 0;
+    height: 50%;
+    width: 50px;
+    background-color: #666;
+    box-shadow: inset 0 0 8px #000;
+    color: #fff;
+
+    &:active {
+      background-color: #5a5a5a;
+      box-shadow: inset 0 0 12px #000;
+    }
+
+    &.plus {
+      border-radius: 0px 10px 0px 0px;
+    }
+
+    &.minus {
+      border-radius: 0px 0px 10px 0px;
+    }
+  }
 }
 .controlBtn {
   width: 125px;
@@ -171,34 +177,40 @@ input[type=number] {
   color: #242424;
   padding: 4px 10px;
   cursor: pointer;
-}
-.controlBtn.play {
-  background: radial-gradient(circle, rgba(125,200,27,1) 0%, rgba(94,152,18,1) 100%);
-  border: 2px solid #7dc81b;
-  box-shadow: 0px 0px 10px #7dc81b50;
-}
-.controlBtn.play:active {
-  background: #5e9812;
-  box-shadow: inset 0 0 10px #000;
-  border: 0;
-}
-.controlBtn.stop {
-  background: radial-gradient(circle, rgba(251,56,56,1) 0%, rgba(152,21,18,1) 100%);
-  border: 2px solid #fb3838;
-  box-shadow: 0px 0px 10px #fb383850;
-}
-.controlBtn.stop:active {
-  background: #981512;
-  box-shadow: inset 0 0 10px #000;
-  border: 0;
-}
-.controlBtn.clear {
-  background: radial-gradient(circle, rgba(251,129,56,1) 0%, rgba(198,95,22,1) 100%);
-  border: 2px solid #fb8138;
-  box-shadow: 0px 0px 10px #fb813850;
-}
-.controlBtn.clear:active {
-  background: #c65f16;
-  box-shadow: inset 0 0 10px #000;
-  border: 0;
+
+  &.play {
+    background: radial-gradient(circle, rgba(125,200,27,1) 0%, rgba(94,152,18,1) 100%);
+    border: 2px solid #7dc81b;
+    box-shadow: 0px 0px 10px #7dc81b50;
+
+    &:active {
+      background: #5e9812;
+      box-shadow: inset 0 0 10px #000;
+      border: 0;
+    }
+  }
+
+  &.stop {
+    background: radial-gradient(circle, rgba(251,56,56,1) 0%, rgba(152,21,18,1) 100%);
+    border: 2px solid #fb3838;
+    box-shadow: 0px 0px 10px #fb383850;
+
+    &:active {
+      background: #981512;
+      box-shadow: inset 0 0 10px #000;
+      border: 0;
+    }
+  }
+
+  &.clear {
+    background: radial-gradient(circle, rgba(251,129,56,1) 0%, rgba(198,95,22,1) 100%);
+    border: 2px solid #fb8138;
+    box-shadow: 0px 0px 10px #fb813850;
+
+    &:active {
+      background: #c65f16;
+      box-shadow: inset 0 0 10px #000;
+      border: 0;
+    }
+  }
 }

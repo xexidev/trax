@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import { TrackerContext } from '../../../context/trackerContext'
 
-export default function Pulse ({ trackRowIndex, pulseIndex }) {
+export default function Pulse ({ trackRowIndex, pulseIndex, name }) {
   const { track, setInstance, currentStep } = useContext(TrackerContext)
   const [isChecked, setIsChecked] = useState(track[trackRowIndex][pulseIndex])
   const isPlaying = currentStep === pulseIndex + 1
@@ -17,6 +17,7 @@ export default function Pulse ({ trackRowIndex, pulseIndex }) {
 
   return (
     <input
+      name={name}
       type="checkBox"
       checked={isChecked}
       onChange={(e) => togglePulse(e)}
