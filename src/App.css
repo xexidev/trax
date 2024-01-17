@@ -11,13 +11,32 @@
   overflow-x: auto;
   white-space: nowrap;
   border: 0px solid #111;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px #000;
   margin: 0 2rem 50px;
+  position: relative;
+}
+.pulseCount {
+  display: flex;
+  width: 100%;
+  min-width: 650px;
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  padding-top: 3px;
+
+  & .pulseNumber {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-family: 'bebas';
+    color: #fb8138;
+
+    &.on {
+      color: #ffba7e;
+    }
+  }
 }
 .tracker {
   display: flex;
-  min-width: 900px;
+  min-width: 650px;
   flex-direction: column;
   border-radius: 10px;
 }
@@ -86,6 +105,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 50px;
 }
 .bpmControls {
   display: flex;

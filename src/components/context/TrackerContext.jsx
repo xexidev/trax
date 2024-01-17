@@ -62,6 +62,12 @@ export function TrackerProvider ({ children }) {
       const arrayBuffer = await response.arrayBuffer()
       const audioBuffer = await audioContext.current.decodeAudioData(arrayBuffer)
       newTrack[trackRowIndex][pulseIndex] = audioBuffer
+      if (!isPlaying) {
+        const source = audioContext.current.createBufferSource()
+        source.buffer = audioBuffer
+        source.connect(audioContext.current.destination)
+        source.start()
+      }
     } else {
       newTrack[trackRowIndex][pulseIndex] = null
     }
@@ -91,6 +97,7 @@ export function TrackerProvider ({ children }) {
     })
     setTrack(newTrack)
   }
+
   return (
     <TrackerContext.Provider value={{ track, setInstance, currentStep, isPlaying, setIsPlaying, clear, bpm, setBpm }}>
       {children}
